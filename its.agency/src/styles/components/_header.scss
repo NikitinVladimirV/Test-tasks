@@ -1,0 +1,228 @@
+.header {
+  padding: 30px 0;
+  background-color: $color-white;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  &__logo {
+    position: relative;
+    margin-right: 9%;
+    padding-right: 21px;
+    padding-bottom: 3px;
+    font-family: TTHoves;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      right: 11px;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background-color: $color-text;
+    }
+  }
+
+  .nav {
+    margin-right: auto;
+
+    &__btn {
+      display: none;
+    }
+
+    &__list {
+      display: flex;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-right: 24px;
+      }
+    }
+
+    &__link {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.8px;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+  }
+
+  &__callback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 6%;
+
+    &-link {
+      padding-right: 9px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+
+    &-btn {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba($color-text, 0.3);
+    }
+  }
+
+  .actions-list {
+    display: flex;
+    padding-top: 3px;
+
+    &__item {
+      &:not(:last-child) {
+        margin-right: 24px;
+      }
+    }
+
+    &__btn {
+      &--cart {
+        height: 24px;
+        width: 24px;
+        border: 1px solid $color-btn__bg;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 500;
+        background-color: $color-btn__bg;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .header {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba($color-text, 0.06);
+
+    &__container {
+      position: relative;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+    }
+
+    &__logo {
+      margin-right: 0px;
+    }
+
+    .nav {
+      position: absolute;
+      left: 0;
+      margin-right: 0px;
+      padding: 3%;
+
+      &__btn {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        display: block;
+        height: 14px;
+        width: 24px;
+        transform: translateY(-50%);
+
+        span,
+        &::before,
+        &::after {
+          display: block;
+          height: 2px;
+          width: 100%;
+          background-color: $color-text;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      &__list {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        padding: 70px 3%;
+        display: block;
+        width: 100%;
+        max-width: 600px;
+        background-color: $color-white;
+        transform: translateX(-100%);
+        transition: transform 0.4s ease-in-out;
+      }
+
+      &__item:not(:last-child) {
+        margin-bottom: 20px;
+      }
+
+      &--open {
+        .nav {
+          &__list {
+            transform: translateX(0%);
+          }
+
+          &__btn {
+            span {
+              display: none;
+            }
+
+            &::before {
+              top: 50%;
+              transform: translateY(-50%) rotate(45deg);
+              transition: transform 0.4s ease-in-out;
+            }
+
+            &::after {
+              top: 50%;
+              transform: translateY(-50%) rotate(-45deg);
+              transition: transform 0.4s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+
+    &__callback {
+      display: none;
+      margin-right: 0px;
+    }
+
+    .actions-list {
+      &__item {
+        position: absolute;
+        top: 50%;
+        right: 3%;
+        transform: translateY(-50%);
+
+        &:not(.actions-list__item--cart) {
+          display: none;
+        }
+      }
+    }
+
+    // .actions-list__item:not(.actions-list__item--cart) {
+    //   display: none;
+    // }
+  }
+}

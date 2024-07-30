@@ -1,0 +1,15 @@
+// базовые подключения
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "settings";
+@import "effects";
+// Далее импортируем файлы ваших стилей
+@import "components/header";
+@import "components/universal/modals";
+@import "components/cart";
+@import "components/universal/counter";
+@import "components/banner";
+@import "components/universal/breadcrumbs";
+@import "components/content";
+@import "components/footer";

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru" class="html">
+  @include('partials/head.html', { "title": "Colors", "description": "Colors - Онлайн магазин красок" })
+
+  <body class="body">
+    @include('partials/header.html', {})
+    <main class="main">
+      <h1 class="visually-hidden">Colors - Онлайн магазин красок</h1>
+
+      <section class="banner">
+        <div class="banner__container container">
+          <ul class="breadcrumbs list-reset">
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link">Главная</a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link">Продукты</a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link">Краски</a>
+            </li>
+          </ul>
+          <div class="banner__swiper swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <h2 class="swiper-slide__title">Краски</h2>
+                <p class="swiper-slide__description">Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!</p>
+              </div>
+              <div class="swiper-slide">
+                <h2 class="swiper-slide__title">Краски 2</h2>
+              </div>
+              <div class="swiper-slide">
+                <h2 class="swiper-slide__title">Краски 3</h2>
+              </div>
+              <div class="swiper-slide">
+                <h2 class="swiper-slide__title">Краски 4</h2>
+              </div>
+              <div class="swiper-slide">
+                <h2 class="swiper-slide__title">Краски 5</h2>
+              </div>
+              <div class="swiper-slide">
+                <h2 class="swiper-slide__title">Краски 6</h2>
+              </div>
+              ...
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </section>
+      <section class="content">
+        <div class="content__container container">
+          <h3 class="content__title">Краски</h3>
+          <div class="content__wrapper">
+            <ul class="content__filters filters list-reset">
+              <li class="filters__item filters__item--btn"><button class="filters__btn-close btn-reset"></button></li>
+              <li class="filters__item">
+                <label class="filters__switch switch">
+                  <input class="switch__input" name="new" type="checkbox" />
+                  <span class="switch__span"></span>
+                </label>
+                Новинки
+              </li>
+              <li class="filters__item">
+                <label class="filters__switch switch">
+                  <input class="switch__input" name="available" type="checkbox" />
+                  <span class="switch__span"></span>
+                </label>
+                Есть в наличии
+              </li>
+              <li class="filters__item">
+                <label class="filters__switch switch">
+                  <input class="switch__input" name="contract" type="checkbox" />
+                  <span class="switch__span"></span>
+                </label>
+                Контрактные
+              </li>
+              <li class="filters__item">
+                <label class="filters__switch switch">
+                  <input class="switch__input" name="exclusive" type="checkbox" />
+                  <span class="switch__span"></span>
+                </label>
+                Эксклюзивные
+              </li>
+              <li class="filters__item">
+                <label class="filters__switch switch">
+                  <input class="switch__input" name="sale" type="checkbox" />
+                  <span class="switch__span"></span>
+                </label>
+                Распродажа
+              </li>
+            </ul>
+          </div>
+          <div class="content__catalog catalog">
+            <div class="catalog__header">
+              <button class="catalog__btn-filter btn-reset">Фильтры</button>
+              <div class="catalog__header-count"><span id="product-count">0</span> товаров</div>
+              <select class="catalog__header-sort sort" name="sort">
+                <option class="sort__option" value="cost-desc">Сначала дорогие</option>
+                <option class="sort__option" value="cost-asc">Сначала дешевые</option>
+                <option class="sort__option" value="popular-desc">Сначала популярные</option>
+                <option class="sort__option" value="date-desc">Сначала новые</option>
+              </select>
+            </div>
+            <div class="catalog__body"></div>
+          </div>
+        </div>
+      </section>
+      <div class="modal is-hidden" data-target="cart">
+        <div class="modal__overlay">
+          <div class="modal__window cart">
+            <div class="cart__header">
+              <h3 class="cart_header-title">Корзина</h3>
+              <button class="cart__header-btn modal__close btn-reset">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M6 6L18 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <div class="cart__body body-cart">
+              <div class="body-cart__top">
+                <div class="body-cart__top-count"><span id="cart-count">0</span> товара</div>
+                <button class="body-cart__top-clear btn-reset" id="cart-clear">очистить список</button>
+              </div>
+              <ul class="body-cart__list list-reset"></ul>
+            </div>
+            <div class="cart__bottom">
+              <div class="cart__bottom-cost">
+                Итого
+                <span class="cart__bottom-cost__value"><span id="totalCost">0</span> ₽</span>
+              </div>
+              <button class="cart__bottom-btn btn-reset">Оформить заказ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @include('partials/footer.html', {})
+  </body>
+</html>

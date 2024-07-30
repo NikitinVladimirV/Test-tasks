@@ -1,0 +1,8 @@
+.git
+node_modules
+build
+dist
+ftp-data.json
+version.json
+*.zip
+mail-data.php

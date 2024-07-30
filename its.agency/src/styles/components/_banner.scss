@@ -1,0 +1,119 @@
+.banner {
+  height: 560px;
+  min-height: 560px;
+  background-image: url("../../images/banner_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__container {
+    padding-top: 32px;
+    height: 100%;
+  }
+
+  &__swiper {
+    width: 60.5%;
+    height: 95%;
+  }
+
+  .swiper {
+    padding-bottom: 45px;
+
+    &-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &__title {
+        margin: 0;
+        margin-bottom: 19px;
+        font-size: 72px;
+        line-height: 100%;
+        font-weight: 400;
+        letter-spacing: -1.5px;
+        color: $color-white;
+      }
+
+      &__description {
+        margin: 0;
+        max-width: 472px;
+        text-align: center;
+        font-weight: 500;
+        line-height: 130%;
+        letter-spacing: 0.3px;
+        color: $color-white;
+      }
+    }
+
+    &-button {
+      &-disabled {
+        opacity: 0;
+      }
+
+      &-prev {
+        top: 65%;
+        left: 0px;
+        padding-bottom: 5px;
+        color: $color-white;
+      }
+
+      &-next {
+        top: 65%;
+        right: 0px;
+        padding-bottom: 5px;
+        color: $color-white;
+      }
+    }
+
+    &-pagination {
+      left: calc(50% + 7px);
+      bottom: 32px;
+      padding: 13px 20px;
+      max-width: max-content;
+      border-radius: 16px;
+      font-size: 1px;
+      line-height: 1px;
+      background-color: rgba($color-black, 0.4);
+      transform: translateX(-50%);
+
+      &-bullet {
+        height: 6px;
+        width: 6px;
+        background-color: $color-white;
+        opacity: 0.2;
+
+        &-active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .banner {
+    height: max-content;
+    margin-bottom: 48px;
+    min-height: auto;
+    background-image: none;
+
+    &__container {
+      padding-top: 0;
+    }
+
+    &__swiper {
+      width: 100%;
+    }
+
+    .swiper {
+      display: none;
+
+      &-button {
+        &-prev,
+        &-next {
+          display: none;
+        }
+      }
+    }
+  }
+}
