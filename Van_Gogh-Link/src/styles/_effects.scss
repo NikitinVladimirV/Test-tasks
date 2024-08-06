@@ -1,0 +1,18 @@
+@media (min-width: 768px) {
+  a,
+  button {
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &:active {
+      opacity: 0.3;
+    }
+
+    &:focus-visible {
+      outline: 1px solid yellow;
+    }
+  }
+}

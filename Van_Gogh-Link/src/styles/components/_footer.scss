@@ -1,0 +1,330 @@
+.footer {
+  background-color: $color-footer;
+
+  &__container {
+    padding-top: 61px;
+    padding-bottom: 49px;
+    padding-left: 18px;
+    color: $color-white;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 64px;
+    grid-gap: 20px 20px;
+  }
+
+  &__item {
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+    grid-column: span 3;
+
+    h4 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 100%;
+      font-weight: 700;
+      color: $color-white;
+    }
+  }
+
+  .logo {
+    &__link {
+      display: inline-block;
+      font-size: 0;
+    }
+
+    &__icon {
+      height: 63px;
+      width: 241px;
+    }
+  }
+
+  .address {
+    padding-left: 78px;
+
+    &__title {
+      margin-bottom: 20px;
+    }
+
+    &__content {
+      font-style: normal;
+    }
+  }
+
+  .services {
+    grid-row: span 2;
+    padding-left: 117px;
+
+    &__title {
+      margin-bottom: 16px;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .docs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    &__link {
+      text-align: right;
+      color: $color-disable;
+    }
+  }
+
+  .captcha {
+    padding-top: 29px;
+    padding-left: 2px;
+    letter-spacing: 0.1px;
+    color: $color-disable;
+
+    &__text {
+      margin: 0;
+    }
+
+    &__link {
+      letter-spacing: 0.2px;
+      text-decoration: underline;
+    }
+  }
+
+  .contacts {
+    padding-top: 15px;
+    padding-left: 77px;
+
+    &__title {
+      margin-bottom: 17px;
+    }
+
+    p {
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .banks {
+    padding-top: 55px;
+
+    &__list {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &__item {
+      height: 27px;
+      max-width: 50px;
+
+      &:not(:last-child) {
+        max-width: 46px;
+        margin-right: 33px;
+      }
+
+      &:last-child {
+        height: 29px;
+      }
+    }
+
+    &__icon {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .footer {
+    .logo {
+      padding-top: 3px;
+
+      &__icon {
+        height: 57px;
+        width: 219px;
+      }
+    }
+
+    .address {
+      grid-column: span 4;
+    }
+
+    .services {
+      grid-column: span 2;
+      margin-left: -15px;
+      padding-left: 0px;
+    }
+
+    .contacts {
+      grid-column: span 4;
+    }
+  }
+}
+
+@media (max-width: 930px) {
+  .footer {
+    &__container {
+      padding-top: 46px;
+      padding-left: 45px;
+    }
+
+    &__list {
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(2, 70px);
+
+      grid-gap: 15px 5px;
+    }
+
+    &__item {
+      grid-column: span 4;
+    }
+
+    .logo {
+      grid-column: span 8;
+
+      &__icon {
+        height: 50px;
+        width: 180px;
+      }
+    }
+
+    .address {
+      grid-column: span 3;
+      padding-left: 1px;
+    }
+
+    .docs {
+      align-items: flex-start;
+      justify-content: center;
+      grid-column: span 3;
+      order: 5;
+
+      a {
+        text-align: left;
+
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .contacts {
+      grid-row: span 2;
+      grid-column: span 3;
+      margin-left: -6px;
+      padding-top: 0;
+      padding-left: 0;
+    }
+
+    .services {
+      order: 4;
+      grid-column: span 2;
+      padding-left: 24px;
+      margin-left: 0;
+
+      &__title {
+        margin-bottom: 17px;
+      }
+
+      &__item {
+        &:not(:last-child) {
+          margin-bottom: 25px;
+        }
+      }
+    }
+
+    .banks {
+      order: 6;
+      grid-column: span 3;
+      padding-top: 41px;
+      padding-left: 10px;
+
+      &__list {
+        justify-content: flex-start;
+      }
+    }
+
+    .captcha {
+      grid-column: span 5;
+      order: 7;
+      padding-top: 22px;
+      padding-left: 40px;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .footer {
+    &__container {
+      padding-top: 35px;
+      padding-bottom: 42px;
+      padding-left: 35px;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 0;
+
+      .logo {
+        margin-bottom: 22px;
+        padding-top: 4px;
+        padding-left: 4px;
+      }
+
+      .address {
+        margin-bottom: 32px;
+        padding: 0;
+
+        &__title {
+          margin-bottom: 10px;
+        }
+      }
+
+      .contacts {
+        margin-bottom: 29px;
+        padding-left: 6px;
+
+        &__title {
+          margin-bottom: 7px;
+        }
+      }
+
+      .services {
+        margin-bottom: 29px;
+        padding-left: 0;
+
+        &__title {
+          margin-bottom: 16px;
+        }
+
+        &__item {
+          &:not(:last-child) {
+            margin-bottom: 15px;
+          }
+        }
+      }
+
+      .docs {
+        margin-bottom: 35px;
+      }
+
+      .banks {
+        margin-bottom: 28px;
+      }
+
+      .captcha {
+        padding: 0;
+      }
+    }
+  }
+}

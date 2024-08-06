@@ -1,0 +1,257 @@
+.search {
+  &__container {
+    padding-top: 53px;
+    padding-bottom: 59px;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 43px;
+    font-family: Korataki, sans-serif;
+    font-size: 44px;
+    line-height: 140%;
+    font-weight: 400;
+    color: $color-primary;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 49px 40px;
+  }
+
+  .card {
+    &:nth-child(3n - 2) {
+      .card__top {
+        background-image: url("/images/markt.webp");
+      }
+    }
+
+    &:nth-child(3n - 1) {
+      .card__top {
+        background-image: url("/images/arg.webp");
+      }
+    }
+
+    &:nth-child(3n) {
+      .card__top {
+        background-image: url("/images/noname.webp");
+      }
+    }
+
+    &__top {
+      position: relative;
+      margin-bottom: 20px;
+      height: 477px;
+      border-radius: 20px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__bage {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 8px 40px;
+      border-radius: 100px;
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 600;
+      color: $color-white;
+      background-color: $color-primary;
+    }
+
+    &__btn {
+      &-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 18.5%;
+        width: 100%;
+        border-bottom-right-radius: 100px;
+        border-bottom-left-radius: 100px;
+        background-color: rgba($color-grey, 0.7);
+      }
+
+      &-more {
+        padding: 13px 0;
+        width: 80.5%;
+        border-radius: 100px;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+        color: $color-white;
+        background-color: $color-accent;
+      }
+    }
+
+    &__title {
+      margin: 0;
+      margin-bottom: 13px;
+      font-size: 18px;
+      line-height: 140%;
+      font-weight: 700;
+      color: $color-primary;
+    }
+
+    &__cost {
+      font-size: 22px;
+      line-height: 140%;
+      font-weight: 700;
+      color: $color-primary;
+
+      &-acctual {
+        margin-right: 13px;
+
+        &--sale {
+          color: $color-accent;
+        }
+      }
+
+      &-old {
+        color: $color-disable;
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .search {
+    &__container {
+      padding-top: 52px;
+      padding-bottom: 65px;
+      padding-left: 19px;
+    }
+
+    &__title {
+      font-size: 40px;
+    }
+
+    &__list {
+      grid-gap: 28px 30px;
+    }
+
+    .card {
+      &__top {
+        height: 429px;
+      }
+
+      &__bage {
+        top: 11px;
+      }
+
+      &__btn {
+        &-wrapper {
+          height: 20%;
+        }
+
+        &-more {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 930px) {
+  .search {
+    &__container {
+      padding-top: 45px;
+      padding-bottom: 49px;
+      padding-left: 44px;
+    }
+
+    &__title {
+      font-size: 32px;
+      line-height: 44px;
+    }
+
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 49px 40px;
+    }
+
+    .card {
+      &__top {
+        height: 477px;
+      }
+
+      &__bage {
+        top: 10px;
+        left: 11px;
+      }
+
+      &__btn {
+        &-more {
+          width: 80%;
+        }
+
+        &-wrapper {
+          height: 18.5%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .search {
+    &__container {
+      padding-top: 32px;
+      padding-left: 35px;
+      padding-bottom: 42px;
+    }
+
+    &__title {
+      margin-bottom: 26px;
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    &__list {
+      grid-gap: 32px 10px;
+    }
+
+    .card {
+      &:nth-child(3) {
+        .card__btn-wrapper {
+          display: block;
+        }
+      }
+
+      &__top {
+        margin-bottom: 10px;
+        height: 230px;
+        border-radius: 10px;
+      }
+
+      &__bage {
+        left: 10px;
+        padding: 2px 15px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      &__btn-wrapper {
+        display: none;
+      }
+
+      &__title {
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 142%;
+        font-weight: 500;
+      }
+
+      &__cost {
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+}
