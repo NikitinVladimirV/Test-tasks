@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "stylelint.vscode-stylelint",
+    "editorconfig.editorconfig",
+    "htmlhint.vscode-htmlhint",
+    "ritwickdey.liveserver",
+    "dbaeumer.vscode-eslint",
+    "rebornix.project-snippets"
+  ]
+}

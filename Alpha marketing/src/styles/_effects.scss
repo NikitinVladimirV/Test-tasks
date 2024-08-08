@@ -1,0 +1,26 @@
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  opacity: 0.5;
+}
+
+input:focus-visible {
+  &::placeholder {
+    opacity: 0;
+  }
+}
+
+// a,
+// button {
+//   transition: opacity 0.3s ease;
+
+//   &:hover {
+//     opacity: 0.5;
+//   }
+
+//   &:active {
+//     opacity: 0.2;
+//   }
+// }

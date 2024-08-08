@@ -1,0 +1,63 @@
+.header {
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 16px;
+  }
+
+  &__logo {
+    width: 100%;
+    // margin-bottom: 5px;
+  }
+
+  &__phone {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    font-size: 11px;
+    color: $color-white;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  &__burger {
+    box-sizing: content-box;
+    padding: 11px 0;
+    height: 20px;
+    width: 30px;
+  }
+
+  &__nav {
+    display: none;
+  }
+
+  .search {
+    position: relative;
+    min-width: 85%;
+    border-radius: 420px;
+
+    @include border-in(1, (270deg, $color-white 0%, #9e95ff 52%, $color-white 100%));
+
+    &__input {
+      height: 25px;
+      width: 100%;
+      border-radius: inherit;
+      background-image: linear-gradient(rgba(#2e335a, 1) 0%, rgba(#1c1b33, 1) 100%);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    &__burger {
+      display: none;
+    }
+
+    &__nav {
+      display: block;
+    }
+  }
+}

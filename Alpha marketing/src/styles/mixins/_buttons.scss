@@ -1,0 +1,52 @@
+@mixin btn($blur, $shadow-color) {
+  position: relative;
+  margin: 50px 10px;
+  padding: 10px 40px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: $color-white;
+  background-color: rgba($color-btn-bg, 0.5);
+  box-shadow: 0px 0px $blur $shadow-color;
+  transition: box-shadow 0.3s linear;
+
+  &:hover {
+    box-shadow: 0 0 $blur #8bffff;
+  }
+
+  &:active {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba($color-black, 0.05);
+      border-radius: inherit;
+    }
+  }
+
+  @include border-in(
+    2,
+    (200deg, #59f8d2 9%, rgba(#74dfdd, 0.43) 31%, rgba(#a1b4ef, 0.54) 67%, rgba(#ca8eff, 0.55) 100%)
+  );
+}
+
+@mixin border-in($border-width, $gradient) {
+  &::before {
+    content: "";
+    position: absolute;
+    top: -#{$border-width}px;
+    left: -#{$border-width}px;
+    bottom: -#{$border-width}px;
+    right: -#{$border-width}px;
+    padding: #{$border-width}px;
+    border-radius: inherit;
+    background: linear-gradient($gradient);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+}

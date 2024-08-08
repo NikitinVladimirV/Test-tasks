@@ -1,0 +1,32 @@
+.burger {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  &__line,
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    border-radius: 2px;
+    background-image: linear-gradient(270deg, #ffffff 0%, #d795ff 52%, #7bc2fe 100%);
+  }
+
+  &__line {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}

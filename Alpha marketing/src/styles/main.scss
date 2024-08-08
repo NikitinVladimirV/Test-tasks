@@ -1,0 +1,10 @@
+// базовые подключения
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "settings";
+@import "effects";
+
+@import "./components/header";
+@import "./components/burger";
+@import "./components/footer";

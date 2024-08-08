@@ -1,0 +1,11 @@
+>= 0.5%
+last 2 versions
+Firefox ESR
+not dead
+
+Chrome >= 60
+Firefox >= 60
+iOS >= 12
+Safari >= 12
+
+not Explorer <= 11
