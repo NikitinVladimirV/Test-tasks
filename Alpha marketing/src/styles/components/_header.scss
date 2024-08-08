@@ -48,6 +48,37 @@
       background-image: linear-gradient(rgba(#2e335a, 1) 0%, rgba(#1c1b33, 1) 100%);
     }
   }
+
+  .breadcrumbs {
+    &__list {
+      display: flex;
+    }
+
+    &__item {
+      position: relative;
+
+      &:not(:first-child) {
+        padding-left: 15px;
+
+        &::before {
+          content: ">";
+          position: absolute;
+          left: 0;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+
+    &__link {
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 400;
+      color: $color-white;
+    }
+  }
 }
 
 @media (min-width: 768px) {
