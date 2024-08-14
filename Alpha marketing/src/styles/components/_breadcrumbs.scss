@@ -1,0 +1,38 @@
+.breadcrumbs {
+  padding: 9px 8px;
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    position: relative;
+
+    &:not(:first-child) {
+      padding-left: 19px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        height: 6px;
+        width: 6px;
+        border-top: 1px solid $color-white;
+        border-right: 1px solid $color-white;
+        transform: rotate(45deg) translateY(-50%);
+      }
+    }
+
+    &:not(:last-child) {
+      margin-right: 7px;
+    }
+  }
+
+  &__link {
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 400;
+    color: $color-white;
+    text-transform: capitalize;
+  }
+}

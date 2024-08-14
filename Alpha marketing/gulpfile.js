@@ -1,377 +1,57 @@
-// Gulp
-const { src, dest, series, watch } = require("gulp"); // подключаем функции gulp
+const { series, parallel, watch } = require("gulp");
 
-const gulpif = require("gulp-if"); // условие если
-// Удаление
-const del = require("del"); // удаление директорий и файлов
-// Создание спрайта
-const svgSprite = require("gulp-svg-sprite"); // создания SVG-спрайта
-const svgmin = require("gulp-svgmin"); //
-const cheerio = require("gulp-cheerio"); //
-const replace = require("gulp-replace"); // поиск и замена
-// Работа с HTML
-const fileInclude = require("gulp-file-include"); //
-const typograf = require("gulp-typograf"); //
-const htmlMin = require("gulp-htmlmin"); // минификация html
-const version = require("gulp-version-number"); //
-// Работа с CSS/SCSS
-const sass = require("gulp-sass")(require("sass")); //
-const autoprefixer = require("gulp-autoprefixer"); // расстановка префиксов
-const cleanCSS = require("gulp-clean-css"); // чистка файлов стилей
-// Работа с JS
-// const webpack = require("webpack"); // ??????????????????????????????????
-const webpackStream = require("webpack-stream"); //
-const uglify = require("gulp-uglify-es").default; // для обфускации кода(делает код не читаемым)
-// Создание карт файлов
-const sourcemaps = require("gulp-sourcemaps"); // работа с sourcemaps
-// Обработка ошибок
-const plumber = require("gulp-plumber"); // обработка ошибок
-const notify = require("gulp-notify"); // показывает ошибки и подсказки сборки
-// Обновление страницы
-const browserSync = require("browser-sync").create(); // browser-sync, как гласит спека добавляем .create()
-// Шрифты
-const ttf2woff2 = require("gulp-ttf2woff2"); //
-const ttf2woff = require("gulp-ttf2woff"); //
-// Изображения
-const image = require("gulp-imagemin"); // оптимизация изображений // version 6.3.1 no work need to setup 6.2.1
-const webp = require("gulp-webp"); //
-// Deploy
-const ftp = require("vinyl-ftp"); //
-const gutil = require("gulp-util"); //
-const fs = require("fs"); //
-// Zip
-const zip = require("gulp-zip"); //
-const path = require("path"); // получение пути к папке проекта
-const rootFolder = path.basename(path.resolve()); // получение названия папки проекта
-// Variable
-const srcFolder = "./src";
-const distFolder = "./dist";
-const buildFolder = "./build";
-const jsFileName = "main.js";
-const paths = {
-  srcImagesFolder: `${srcFolder}/images`,
-  srcSvgFolder: `${srcFolder}/images/svg`,
-  srcResourcesFolder: `${srcFolder}/resources`,
-  srcFontsFolder: `${srcFolder}/resources/fonts`,
-  srcScriptsFolder: `${srcFolder}/scripts`,
-  srcStylesFolder: `${srcFolder}/styles`,
+const browserSync = require("browser-sync").create();
 
-  distStyleFolder: `${distFolder}/styles`,
-  distScriptsFolder: `${distFolder}/scripts`,
-  distFontsFolder: `${distFolder}/fonts`,
+const cleanTask = require("./gulp/tasks/clean.js");
+const resourcesTask = require("./gulp/tasks/resources.js");
+const htmlTask = require("./gulp/tasks/html.js");
+const pugTask = require("./gulp/tasks/pug.js");
+const scssTask = require("./gulp/tasks/scss.js");
+const jsTask = require("./gulp/tasks/js.js");
+const imagesTask = require("./gulp/tasks/images.js");
 
-  buildStylesFolder: `${buildFolder}/styles`,
-  buildScriptsFolder: `${buildFolder}/scripts`,
-  buildFontsFolder: `${buildFolder}/fonts`,
-};
-let isProd = false;
-// Tasks
-const toProd = (done) => {
-  isProd = true;
-  done();
-};
-
-const clean = () => {
-  return del(!isProd ? distFolder : buildFolder);
-};
-
-const fontsTtfToWoff2 = () => {
-  return src(`${paths.srcFontsFolder}/**/*.*`)
-    .pipe(
-      plumber(
-        notify.onError({
-          title: "FONTS",
-          message: "Error: <%= error.message %>",
-        })
-      )
-    )
-    .pipe(ttf2woff2())
-    .pipe(dest(isProd ? paths.buildFontsFolder : paths.distFontsFolder));
-};
-
-const resources = () => {
-  return src([`${paths.srcResourcesFolder}/**`, "!./**/*.+(ttf|woff)"]).pipe(
-    dest(!isProd ? distFolder : buildFolder)
-  );
-};
-//???
-const svgSprites = () => {
-  return (
-    src(`${paths.srcSvgFolder}/**/*.svg`)
-      // .pipe(
-      //   svgmin({
-      //     js2svg: {
-      //       pretty: true,
-      //     },
-      //   })
-      // )
-      // .pipe(
-      //   cheerio({
-      //     run: function ($) {
-      //       // $('[fill]').removeAttr('fill');
-      //       // $('[stroke]').removeAttr('stroke');
-      //       // $('[style]').removeAttr('style');
-      //     },
-      //     parserOptions: {
-      //       xmlMode: true
-      //     },
-      //   })
-      // )
-      // .pipe(replace('&gt;', '>'))
-      .pipe(
-        svgSprite({
-          mode: {
-            stack: {
-              sprite: "../../sprite.svg",
-            },
-          },
-        })
-      )
-      .pipe(dest(paths.srcSvgFolder))
-  );
-};
-//
-const imagesToWebp = () => {
-  src([`${paths.srcImagesFolder}/**`, `!${paths.srcSvgFolder}/**`])
-    .pipe(
-      plumber(
-        notify.onError({
-          title: "IMAGES",
-          message: "Error: <%= error.message %>",
-        })
-      )
-    )
-    // .pipe(
-    //   gulpif(
-    //     isProd,
-    //     image({
-    //       interlaced: true,
-    //       progressive: true,
-    //       quality: 70,
-    //       optimizationLevel: 5,
-    //     })
-    //   )
-    // )
-    .pipe(dest(!isProd ? `${distFolder}/images` : `${buildFolder}/images`));
-  return src([`${paths.srcImagesFolder}/**`, `!${paths.srcSvgFolder}/**`])
-    .pipe(
-      webp({
-        quality: isProd ? 70 : null,
-        //
-        lossless: true,
-      })
-    )
-    .pipe(dest(!isProd ? `${distFolder}/images` : `${buildFolder}/images`));
-};
-//
-const styles = () => {
-  return (
-    src(`${paths.srcStylesFolder}/**/*.scss`)
-      .pipe(
-        plumber(
-          notify.onError({
-            title: "SCSS",
-            message: "Error: <%= error.message %>",
-          })
-        )
-      )
-      .pipe(gulpif(!isProd, sourcemaps.init()))
-      .pipe(
-        sass({
-          outputStyle: isProd ? "compressed" : "expanded",
-        }).on("error", sass.logError)
-      )
-      .pipe(
-        autoprefixer({
-          cascade: false,
-          grid: true,
-        })
-      )
-      //? backend - no sourcemap
-      .pipe(gulpif(!isProd, sourcemaps.write("sourcemaps/")))
-      .pipe(gulpif(isProd, cleanCSS({ level: 2 })))
-      .pipe(dest(!isProd ? paths.distStyleFolder : paths.buildStylesFolder))
-      .pipe(gulpif(!isProd, browserSync.stream()))
-  );
-};
-
-const scripts = () => {
-  return src(`${paths.srcScriptsFolder}/main.js`)
-    .pipe(
-      plumber(
-        notify.onError({
-          title: "JS",
-          message: "Error: <%= error.message %>",
-        })
-      )
-    )
-    .pipe(
-      webpackStream({
-        mode: isProd ? "production" : "development",
-        output: {
-          filename: jsFileName,
-        },
-        module: {
-          rules: [
-            {
-              test: /\.m?js$/,
-              exclude: /node_modules/,
-              use: {
-                loader: "babel-loader",
-                options: {
-                  presets: [
-                    [
-                      "@babel/preset-env",
-                      {
-                        targets: "defaults",
-                      },
-                    ],
-                  ],
-                },
-              },
-            },
-          ],
-        },
-        //? backend - false
-        devtool: !isProd ? "source-map" : false,
-      })
-    )
-    .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
-    .on("error", function (err) {
-      console.error("WEBPACK ERROR", err);
-      this.emit("end");
-    })
-    .pipe(dest(!isProd ? paths.distScriptsFolder : paths.buildScriptsFolder))
-    .pipe(gulpif(!isProd, browserSync.stream()));
-};
-
-const html = () => {
-  return src(`${srcFolder}/*.html`)
-    .pipe(
-      plumber(
-        notify.onError({
-          title: "HTML",
-          message: "Error: <%= error.message %>",
-        })
-      )
-    )
-    .pipe(
-      fileInclude({
-        prefix: "@",
-        basepath: "@file",
-      })
-    )
-    .pipe(
-      typograf({
-        locale: ["ru", "en-US"],
-        disableRule: ["ru/other/*"],
-      })
-    )
-    .pipe(
-      gulpif(
-        isProd,
-        version({
-          value: "%DT%",
-          append: {
-            key: "_v",
-            cover: 0,
-            to: "all",
-          },
-          output: {
-            file: "version.json",
-          },
-        })
-      )
-    )
-    .pipe(
-      gulpif(
-        isProd,
-        htmlMin({
-          collapseWhitespace: true,
-          removeComments: true,
-        })
-      )
-    )
-    .pipe(dest(!isProd ? distFolder : buildFolder))
-    .pipe(gulpif(!isProd, browserSync.stream()));
-};
+// const isProd = require("./gulp/config/app.js").isProd;
+const paths = require("./gulp/config/path.js");
 
 const watchFiles = () => {
   browserSync.init({
     server: {
-      baseDir: !isProd ? distFolder : buildFolder,
+      baseDir: paths.buildFolder,
     },
   });
 
-  watch(`${paths.srcImagesFolder}/**`, imagesToWebp);
-  watch(`${paths.srcImagesFolder}/svg/**`, svgSprites);
-  watch(`${paths.srcResourcesFolder}/fonts/**`, fontsTtfToWoff2);
-  watch(`${paths.srcResourcesFolder}/**`, resources);
-  watch(`${paths.srcScriptsFolder}/**`, scripts);
-  watch(`${paths.srcStylesFolder}/**`, styles);
-  watch(`${srcFolder}/**/*.html`, html);
+  // watch(`${paths.srcImagesFolder}/**`, imagesToWebp).on("all", browserSync.reload);
+  // watch(`${paths.srcImagesFolder}/svg/**`, svgSprites).on("all", browserSync.reload);
+  // watch(`${paths.srcResourcesFolder}/fonts/**`, fontsTtfToWoff2).on("all", browserSync.reload);
+  // watch(`${paths.srcResourcesFolder}/**`, resources).on("all", browserSync.reload);
+  // watch(`${paths.srcScriptsFolder}/**`, scripts).on("all", browserSync.reload);
+  // watch(`${paths.srcStylesFolder}/**`, styles).on("all", browserSync.reload);
+  //
+  watch(paths.resources.watch, resourcesTask).on("all", browserSync.reload);
+  watch(paths.html.watch, htmlTask).on("all", browserSync.reload);
+  watch(paths.pug.watch, pugTask).on("all", browserSync.reload);
+  watch(paths.scss.watch, scssTask).on("all", browserSync.reload);
+  watch(paths.js.watch, jsTask).on("all", browserSync.reload);
+  watch(paths.img.watch, imagesTask).on("all", browserSync.reload);
 };
-// DEPLOY //
-const deploy = () => {
-  let ftpData = JSON.parse(fs.readFileSync("ftp-data.json", "utf-8"));
-  let connect = ftp.create({
-    host: isProd ? ftpData.hostProd : ftpData.host,
-    user: isProd ? ftpData.userProd : ftpData.user,
-    password: isProd ? ftpData.passwordProd : ftpData.password,
-    parallel: 10,
-    log: gutil.log,
-  });
 
-  return src(`${buildFolder}/**`, {})
-    .pipe(
-      plumber(
-        notify.onError({
-          title: "DEPLOY",
-          message: "Error: <%= error.message %>",
-        })
-      )
-    )
-    .pipe(connect.newer(isProd ? ftpData.folderProd : ftpData.folder))
-    .pipe(connect.dest(isProd ? ftpData.folderProd : ftpData.folder));
-};
-// ZIP // Доработать
-const zipFiles = () => {
-  del(`${rootFolder}.zip`);
-  return src(`${buildFolder}/**`, {})
-    .pipe(
-      plumber(
-        notify.onError({
-          title: "ZIP",
-          message: "Error: <%= error.message %>",
-        })
-      )
-    )
-    .pipe(zip(`${rootFolder}.zip`))
-    .pipe(dest("./"));
-};
+exports.cleanTask = cleanTask;
+exports.resourcesTask = resourcesTask;
+exports.htmlTask = htmlTask;
+exports.pugTask = pugTask;
+exports.scssTask = scssTask;
+exports.jsTask = jsTask;
+exports.imagesTask = imagesTask;
+
 exports.default = series(
-  clean,
-  fontsTtfToWoff2,
-  resources,
-  svgSprites,
-  imagesToWebp,
-  styles,
-  scripts,
-  html,
+  cleanTask,
+  resourcesTask,
+  parallel(htmlTask, scssTask, jsTask, imagesTask),
   watchFiles
 );
-exports.build = series(
-  toProd,
-  clean,
-  fontsTtfToWoff2,
-  resources,
-  svgSprites,
-  imagesToWebp,
-  styles,
-  scripts,
-  html
+exports.pug = series(
+  cleanTask,
+  resourcesTask,
+  parallel(pugTask, scssTask, jsTask, imagesTask),
+  watchFiles
 );
-exports.backend = series(clean, fontsTtfToWoff2, resources, svgSprites, imagesToWebp, styles, scripts, html);
-exports.deploy = deploy;
-exports.deployProd = series(toProd, deploy);
-exports.zip = zipFiles;
