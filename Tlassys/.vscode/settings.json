@@ -1,0 +1,66 @@
+{
+  // Common ()
+  "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "files.associations": {
+    "*.json": "jsonc",
+    ".htmlhintrc": "jsonc",
+    ".editorconfig": "editorconfig"
+  },
+  // Editor []
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.fontSize": 18,
+  "editor.lineHeight": 1.4,
+  "editor.tabSize": 2,
+  "editor.smoothScrolling": true,
+  "editor.minimap.autohide": true,
+  "editor.minimap.scale": 2,
+  "editor.detectIndentation": false,
+  "editor.linkedEditing": true,
+  // "editor.hover.enabled": false,
+  "editor.hover.delay": 500,
+  "editor.parameterHints.enabled": false,
+  "editor.tabCompletion": "on",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    // "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.sortImports": "explicit"
+  },
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  // "editor.glyphMargin": false,
+  // Workbench <-
+  "workbench.colorTheme": "Monokai Dimmed",
+  "workbench.tree.indent": 14,
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
+  "workbench.editor.wrapTabs": true,
+  // Terminal \/
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.cursorStyle": "underline",
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.copyOnSelection": true,
+  // Languages x
+  "css.hover.references": false,
+  "scss.hover.references": false,
+  "html.hover.references": false,
+  // Extension *
+  "emmet.extensionsPath": ["./.vscode/emmet"],
+  "emmet.includeLanguages": {
+    "blade": "html"
+  },
+  "liveServer.settings.donotVerifyTags": true,
+  "prettier.requireConfig": true,
+  "path-autocomplete.pathMappings": {
+    "@images": "${folder}/src/images",
+    "@styles": "${folder}/src/styles",
+    "@scripts": "${folder}/src/scripts"
+  },
+  "[html]": {},
+  // Other ---
+  "window.density.editorTabHeight": "compact"
+
+  // "notebook.defaultFormatter": "vscode.css-language-features",
+}

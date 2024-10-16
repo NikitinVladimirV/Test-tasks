@@ -1,0 +1,14 @@
+extends layout/app
+
+block page
+  include chunck/header
+
+  h1.title Главная!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  ul.list-reset
+    each item in list
+      li= item.title
+
+  img.img(src="images/ZenBook.jpg", alt="Image")
+
+  include chunck/footer

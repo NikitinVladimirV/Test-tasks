@@ -1,0 +1,20 @@
+.nav {
+  &-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-item {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &-link {
+    &--active {
+      font-weight: 700;
+      color: $color-pink;
+      text-decoration: underline;
+    }
+  }
+}

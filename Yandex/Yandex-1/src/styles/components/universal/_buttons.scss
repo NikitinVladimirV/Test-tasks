@@ -1,0 +1,36 @@
+.btn {
+  display: inline-block;
+  padding: 13px 50px;
+  max-width: 263px;
+  border: 2px solid $color-btn--dark;
+  border-radius: 66px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 130%;
+
+  &--dark {
+    color: $color-btn--white;
+    background-color: $color-btn--dark;
+
+    &:hover {
+      background-color: $color-btn--yellow;
+      color: $color-btn--dark;
+    }
+  }
+
+  &--light {
+    color: $color-btn--dark;
+
+    &:hover {
+      background-color: $color-btn--dark;
+      color: $color-btn--white;
+    }
+  }
+}
+
+@media (max-width: 935px) {
+  .btn {
+    padding: 11px 40px;
+    min-width: 97%;
+  }
+}

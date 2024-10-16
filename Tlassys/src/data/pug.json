@@ -1,0 +1,16 @@
+{
+  "head": {
+    "title": "Alpha marketing",
+    "description": "Тестовое задание"
+  },
+  "list": [
+    {
+      "title": "Alpha marketing",
+      "description": "Тестовое задание"
+    },
+    {
+      "title": "Alpha marketing2",
+      "description": "Тестовое задание"
+    }
+  ]
+}

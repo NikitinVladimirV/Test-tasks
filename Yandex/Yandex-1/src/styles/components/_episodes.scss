@@ -1,0 +1,220 @@
+.episodes {
+  margin-bottom: 201px;
+
+  &__text {
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 53px;
+    max-width: 800px;
+    font-family: Merriweather, serif;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 120%;
+    text-transform: uppercase;
+  }
+
+  &__link {
+    display: inline-block;
+    padding-left: 5px;
+    max-width: 280px;
+    font-family: $font-family;
+    font-size: 20px;
+    line-height: 120%;
+    color: $color-blue;
+    text-transform: none;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 20px;
+    counter-reset: li;
+  }
+
+  .slider-episodes {
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 20px;
+      counter-reset: li;
+    }
+
+    &__item {
+      position: relative;
+      padding-top: 20px;
+      padding-right: 22px;
+      padding-bottom: 20px;
+      padding-left: 72px;
+      background-image: url("../images/episode_bg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      &--height {
+        grid-row: span 2;
+      }
+
+      &--width {
+        grid-column: span 2;
+        padding-right: 290px;
+
+        &::after {
+          content: url("../images/episodes.png");
+          position: absolute;
+          top: -97px;
+          right: -63px;
+        }
+      }
+
+      &::before {
+        content: counter(li);
+        counter-increment: li;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 20px;
+        line-height: 36px;
+        background-color: $color-btn--white;
+      }
+    }
+
+    &__btns {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 935px) {
+  .episodes {
+    margin-bottom: 121px;
+
+    &__container {
+      padding: 0 20px;
+    }
+
+    &__text {
+      margin-bottom: 145px;
+      font-size: 36px;
+      line-height: 110%;
+    }
+
+    &__link {
+      padding-top: 13px;
+      padding-left: 0;
+      max-width: none;
+      font-size: 18px;
+    }
+
+    .slider-episodes {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: -130px;
+        right: -10px;
+        height: 200px;
+        width: 100%;
+        background-image: url("../images/episodes.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(-4deg);
+      }
+
+      &__wrapper {
+        display: flex;
+        margin-bottom: 28px;
+        transform: translateX(0);
+        transition: transform 0.5s ease-in-out;
+      }
+
+      &__item {
+        min-height: 300px;
+        min-width: 100%;
+        padding-top: 60px;
+        font-size: 18px;
+
+        &::before {
+          top: 62px;
+        }
+
+        &--width {
+          grid-column: span 1;
+          padding-right: 22px;
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+      &__btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &__btn {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        border: 2px solid $color-text;
+        border-radius: 50%;
+        background-color: $color-text;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 15px;
+          height: 15px;
+          border-top: 2px solid $color-btn--white;
+          border-left: 2px solid $color-btn--white;
+        }
+
+        &:first-child::before {
+          transform: translate(-25%, -50%) rotate(-45deg);
+        }
+
+        &:last-child::before {
+          transform: translate(-75%, -50%) rotate(135deg);
+        }
+
+        &[disabled] {
+          background-color: $color-disable--grey;
+          border: 2px solid $color-disable--grey;
+          cursor: not-allowed;
+        }
+      }
+
+      &__count {
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+
+        &-bullet {
+          display: inline-block;
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          background-color: $color-bullet--grey;
+
+          &:not(:last-child) {
+            margin-right: 6px;
+          }
+
+          &.active {
+            background-color: $color-text;
+          }
+        }
+      }
+    }
+  }
+}

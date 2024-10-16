@@ -1,0 +1,39 @@
+{
+  "recommendations": [
+    // Code-Time - тайм-треккер
+    "softwaredotcom.swdc-vscode",
+    // CSS Peek - переход к классу из HTML
+    "pranaygp.vscode-css-peek",
+    // DotENV - поддержка файла .env
+    "mikestead.dotenv",
+    // EditorConfig - Конфиг форматирования кода
+    "editorconfig.editorconfig",
+    // ESLint - Линтер JS кода
+    "dbaeumer.vscode-eslint",
+    // HTML CSS Support - автодополнение в HTML классами из подключенного CSS - (попробовать intellisense for CSS class names in HTML)
+    "ecmel.vscode-html-css",
+    // HTML to CSS Autocompletion - автодополнение в CSS классами из HTML
+    "solnurkarim.html-to-css-autocompletion",
+    // HTMLHint - Проверка правил форматирования HTML
+    "htmlhint.vscode-htmlhint",
+    // Jest - Поддержка комманд Jest
+    "orta.vscode-jest",
+    // Live Server - Виртуальный сервер
+    "ritwickdey.liveserver",
+    // Path Autocomplete - автодополнение путей к файлам проекта, создание алиасов путей
+    "ionutvmi.path-autocomplete",
+    // Prettier - форматтер кода
+    "esbenp.prettier-vscode",
+    // Project Snippets - Поддержка сниппетов
+    "rebornix.project-snippets",
+    // Russian Language Pack - перевод VSCode на русский
+    "ms-ceintl.vscode-language-pack-ru",
+    // Todo Tree - приложение ToDo
+    "gruntfuggly.todo-tree",
+    // VSCode-Faker - фейковые данные
+    "deerawan.vscode-faker"
+    // "wordpresstoolbox.wordpress-toolbox",
+    // "ziyasal.vscode-open-in-github",
+    // GIST ? Шарить куски кода
+  ]
+}

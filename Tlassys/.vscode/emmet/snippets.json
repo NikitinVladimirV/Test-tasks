@@ -1,0 +1,8 @@
+{
+  "html": {
+    "snippets": {
+      "d": "<div class=\"${1}\">${2}</div>"
+      // "v-switch": ".switch>(label.label.label--active>input#switch-off[type=radio][name=switch][value=off][checked])+(label.label>input#switch-on[type=radio][name=switch][value=on])"
+    }
+  }
+}

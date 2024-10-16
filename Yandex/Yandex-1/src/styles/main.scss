@@ -1,0 +1,16 @@
+// базовые подключения
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "settings";
+@import "effects";
+// Далее импортируем файлы ваших стилей
+@import "components/universal/buttons";
+@import "components/header";
+@import "components/banner";
+@import "components/universal/string";
+@import "components/lecture";
+@import "components/session";
+@import "components/episodes";
+@import "components/team";
+@import "components/footer";

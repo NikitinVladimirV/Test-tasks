@@ -1,39 +1,45 @@
-const { series, parallel, watch } = require("gulp");
+global.go = {
+  paths: require("./config/path.js"),
+  app: require("./config/app.js"),
+  gulp: require("gulp"),
+  plumber: require("gulp-plumber"),
+  notify: require("gulp-notify"), // Уязвим 2
+  gulpif: require("gulp-if"),
+};
 
 const browserSync = require("browser-sync").create();
 
-const cleanTask = require("./gulp/tasks/clean.js");
-const resourcesTask = require("./gulp/tasks/resources.js");
-const htmlTask = require("./gulp/tasks/html.js");
-const pugTask = require("./gulp/tasks/pug.js");
-const scssTask = require("./gulp/tasks/scss.js");
-const jsTask = require("./gulp/tasks/js.js");
-const imagesTask = require("./gulp/tasks/images.js");
-
-// const isProd = require("./gulp/config/app.js").isProd;
-const paths = require("./gulp/config/path.js");
+const cleanTask = require("./tasks/clean.js");
+const resourcesTask = require("./tasks/resources.js");
+const htmlTask = require("./tasks/html.js");
+const pugTask = require("./tasks/pug.js");
+const scssTask = require("./tasks/scss.js");
+const jsTask = require("./tasks/js.js");
+const imagesTask = require("./tasks/images.js");
+const fontsTask = require("./tasks/font.js");
 
 const watchFiles = () => {
   browserSync.init({
     server: {
-      baseDir: paths.buildFolder,
+      baseDir: go.paths.buildFolder,
     },
   });
 
-  // watch(`${paths.srcImagesFolder}/**`, imagesToWebp).on("all", browserSync.reload);
-  // watch(`${paths.srcImagesFolder}/svg/**`, svgSprites).on("all", browserSync.reload);
-  // watch(`${paths.srcResourcesFolder}/fonts/**`, fontsTtfToWoff2).on("all", browserSync.reload);
-  // watch(`${paths.srcResourcesFolder}/**`, resources).on("all", browserSync.reload);
-  // watch(`${paths.srcScriptsFolder}/**`, scripts).on("all", browserSync.reload);
-  // watch(`${paths.srcStylesFolder}/**`, styles).on("all", browserSync.reload);
-  //
-  watch(paths.resources.watch, resourcesTask).on("all", browserSync.reload);
-  watch(paths.html.watch, htmlTask).on("all", browserSync.reload);
-  watch(paths.pug.watch, pugTask).on("all", browserSync.reload);
-  watch(paths.scss.watch, scssTask).on("all", browserSync.reload);
-  watch(paths.js.watch, jsTask).on("all", browserSync.reload);
-  watch(paths.img.watch, imagesTask).on("all", browserSync.reload);
+  // watch(`${go.paths.srcImagesFolder}/svg/**`, svgSprites).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.resources.watch, resourcesTask).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.html.watch, htmlTask).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.pug.watch, pugTask).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.scss.watch, scssTask).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.js.watch, jsTask).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.img.watch, imagesTask).on("all", browserSync.reload);
+  go.gulp.watch(go.paths.font.watch, fontsTask).on("all", browserSync.reload);
 };
+
+const build = go.gulp.series(cleanTask, resourcesTask, scssTask, jsTask, imagesTask, fontsTask);
+const dev = go.gulp.series(build, htmlTask, watchFiles);
+const devPug = go.gulp.series(build, pugTask, watchFiles);
+const prod = go.gulp.series(build, htmlTask);
+const prodPug = go.gulp.series(build, pugTask);
 
 exports.cleanTask = cleanTask;
 exports.resourcesTask = resourcesTask;
@@ -42,16 +48,16 @@ exports.pugTask = pugTask;
 exports.scssTask = scssTask;
 exports.jsTask = jsTask;
 exports.imagesTask = imagesTask;
+exports.fontsTask = fontsTask;
 
-exports.default = series(
+exports.default = go.app.isProd ? prod : dev;
+exports.pug = go.gulp.series(
   cleanTask,
   resourcesTask,
-  parallel(htmlTask, scssTask, jsTask, imagesTask),
-  watchFiles
-);
-exports.pug = series(
-  cleanTask,
-  resourcesTask,
-  parallel(pugTask, scssTask, jsTask, imagesTask),
+  pugTask,
+  scssTask,
+  jsTask,
+  imagesTask,
+  fontsTask,
   watchFiles
 );

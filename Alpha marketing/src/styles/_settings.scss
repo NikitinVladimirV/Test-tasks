@@ -19,7 +19,7 @@
 .body {
   // min-height: 100%;
   min-height: 6900px;
-  @include bg-cover-center("/images/bg-mobile.webp");
+  @include bg-cover-center("../images/bg-mobile.png");
 }
 
 .container {

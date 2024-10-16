@@ -1,0 +1,155 @@
+.session {
+  margin-bottom: 201px;
+
+  &__container {
+    padding-top: 65px;
+    background-image: url("../images/session.png");
+    background-repeat: no-repeat;
+    background-size: 39%;
+    background-position: 44px 176%;
+  }
+
+  &__card {
+    margin-left: auto;
+    max-width: 705px;
+  }
+
+  &__text {
+    margin: 0;
+    margin-bottom: 45px;
+    font-family: Merriweather, serif;
+    font-size: 36px;
+    line-height: 135%;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+
+    &--red {
+      letter-spacing: 0;
+      color: $color-red;
+    }
+  }
+
+  &__table {
+    margin-bottom: 33px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #fff;
+  }
+
+  &__item {
+    display: flex;
+
+    &:first-child {
+      span {
+        padding-top: 0;
+      }
+    }
+
+    &:not(:last-child) {
+      border-bottom: 2px solid $color-table--border;
+    }
+
+    &:last-child {
+      span {
+        padding-bottom: 0;
+      }
+    }
+
+    &-name {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      min-width: 308px;
+      border-right: 2px solid $color-table--border;
+      color: rgba($color-text, 0.6);
+    }
+
+    &-value {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      padding-left: 15px;
+    }
+
+    &-old {
+      position: relative;
+      display: inline-block;
+      margin-right: 10px;
+      padding: 0;
+      max-width: max-content;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        background-color: red;
+      }
+    }
+  }
+
+  &__link {
+    color: $color-blue;
+  }
+}
+
+@media (max-width: 935px) {
+  .session {
+    margin-bottom: 120px;
+
+    &__container {
+      padding-top: 427px;
+      background-image: url("../images/session.png");
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+      background-size: 100%;
+    }
+
+    &__content {
+      padding-left: 5px;
+    }
+
+    &__text {
+      margin-bottom: 29px;
+      font-size: 28px;
+    }
+
+    &__item {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 16px 0 0;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &:last-child {
+        .session__item-name {
+          padding-bottom: 12px;
+        }
+      }
+
+      &-name {
+        margin-right: 12px;
+        padding-top: 0;
+        padding-bottom: 10px;
+        min-width: auto;
+        border-right: none;
+      }
+
+      &-value {
+        padding-left: 0px;
+        padding-top: 0px;
+        padding-bottom: 16px;
+      }
+    }
+
+    &__table {
+      margin-bottom: 20px;
+    }
+
+    &__link {
+      font-size: 18px;
+      line-height: 110%;
+    }
+  }
+}

@@ -1,0 +1,177 @@
+.team {
+  margin-bottom: 134px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 59px;
+  }
+
+  &__text {
+    margin: 0;
+    font-family: Merriweather, serif;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 120%;
+    text-transform: uppercase;
+  }
+
+  &__btns {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2px;
+  }
+
+  &__btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border: 2px solid $color-btn--dark;
+    border-radius: 50%;
+    background-color: $color-btn--dark;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border-top: 2px solid $color-btn--white;
+      border-left: 2px solid $color-btn--white;
+    }
+
+    &:first-child::before {
+      transform: translate(-25%, -50%) rotate(-45deg);
+    }
+
+    &:last-child::before {
+      transform: translate(-75%, -50%) rotate(135deg);
+    }
+  }
+
+  &__count {
+    padding: 14px;
+    font-size: 16px;
+
+    &-separator {
+      color: rgba($color-text, 0.6);
+    }
+
+    &-from {
+      color: rgba($color-text, 0.6);
+    }
+  }
+
+  .slider-team {
+    overflow-x: hidden;
+
+    &__wrapper {
+      display: flex;
+    }
+
+    &__card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 16px;
+      margin-bottom: 1px;
+      padding-top: 0;
+      padding-right: 40px;
+      padding-bottom: 5px;
+      padding-left: 38px;
+      min-width: calc(100% / 3 - 10px);
+
+      &-image {
+        margin-bottom: 29px;
+        padding: 21px 0 0 14px;
+        width: 100%;
+        max-height: 320px;
+        border-radius: 50%;
+        background-image: url("../images/team_bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+
+      &-name {
+        margin: 0;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 24px;
+        line-height: 120%;
+      }
+
+      &-description {
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 20px;
+        line-height: 120%;
+        opacity: 0.6;
+      }
+
+      &-btn {
+        padding: 7px 11px;
+        border: 1px solid $color-blue;
+        border-radius: 62px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 120%;
+        color: $color-blue;
+      }
+    }
+  }
+}
+
+@media (max-width: 935px) {
+  .team {
+    position: relative;
+    margin-bottom: 170px;
+
+    &__header {
+      margin-bottom: 40px;
+      padding-left: 5px;
+    }
+
+    &__text {
+      font-size: 36px;
+      line-height: 110%;
+    }
+
+    &__btns {
+      position: absolute;
+      bottom: -77px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &__btn {
+      width: 36px;
+      height: 36px;
+    }
+
+    &__count {
+      padding: 11px;
+    }
+
+    .slider-team {
+      &__card {
+        padding-right: 25px;
+        padding-left: 25px;
+        min-width: 100%;
+
+        &-image {
+          padding: 16px 11px 0 11px;
+          max-height: 244px;
+          max-width: 244px;
+        }
+
+        &-name {
+          margin-bottom: 7px;
+          letter-spacing: -0.1px;
+        }
+      }
+    }
+  }
+}

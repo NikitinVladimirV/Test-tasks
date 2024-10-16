@@ -1,0 +1,48 @@
+.lecture {
+  padding-top: 80px;
+
+  &__content {
+    background-image: url("../images/lecture.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+  }
+
+  &__text {
+    margin: 0;
+    padding: 28px 0;
+    max-width: 770px;
+    font-family: Merriweather, serif;
+    font-size: 36px;
+    line-height: 135%;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+
+    &-red {
+      padding: 0;
+      letter-spacing: 0;
+      color: $color-red;
+    }
+  }
+}
+
+@media (max-width: 935px) {
+  .lecture {
+    padding-top: 21px;
+
+    &__content {
+      padding-left: 5px;
+      background-size: 97% 34%;
+      background-position: 43% 49%;
+    }
+
+    &__text {
+      padding: 28px 0 34px;
+      font-size: 28px;
+
+      &-top {
+        display: inline-block;
+        margin-bottom: 77%;
+      }
+    }
+  }
+}

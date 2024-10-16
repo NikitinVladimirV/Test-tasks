@@ -1,0 +1,272 @@
+// базовые подключения
+@import "lib";
+@import "fonts";
+@import "variables";
+@import "settings";
+@import "effects";
+
+@import "./components/*";
+
+.page__container {
+  display: flex;
+}
+
+.main {
+  padding: 30px 40px;
+  height: 100%;
+  width: 100%;
+  background-color: #f5f7fa;
+}
+
+.setting {
+  padding: 35px 30px 30px;
+  border-radius: 25px;
+  background-color: #fff;
+
+  &__header {
+    display: flex;
+    border-bottom: 1px solid #f4f5f7;
+  }
+}
+
+.tabs {
+  &__item {
+    &:not(:last-child) {
+      margin-right: 42px;
+    }
+  }
+
+  &__btn {
+    padding: 0 13px 9px 14px;
+    border: 2px solid transparent;
+    border-bottom: 3px solid transparent;
+    font-size: 16px;
+    font-weight: 500;
+    color: #718ebf;
+
+    &--active {
+      border-bottom: 3px solid #1814f3;
+      color: #1814f3;
+    }
+  }
+}
+
+.account {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 50px;
+  width: 100%;
+
+  &__img {
+    position: relative;
+    padding-top: 4px;
+    height: min-content;
+    max-width: 130px;
+    font-size: 0;
+
+    &::before {
+      content: url("@images/pencil.svg");
+      position: absolute;
+      bottom: 16px;
+      right: -2px;
+    }
+  }
+
+  .data {
+    width: calc(100% - 130px - 55px);
+
+    &__list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      width: 49%;
+      max-width: 418px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #232323;
+
+      &:nth-child(2n + 1) {
+        margin-right: 10px;
+      }
+
+      &:not(:nth-last-child(-n + 2)) {
+        margin-bottom: 22px;
+      }
+
+      span {
+        margin-bottom: 11px;
+      }
+
+      input {
+        padding-left: 20px;
+        height: 50px;
+        width: 100%;
+        border: 1px solid #dfeaf2;
+        border-radius: 15px;
+        font-size: 15px;
+        line-height: 50px;
+        font-weight: 400;
+        color: #718ebf;
+
+        &::placeholder {
+          color: #718ebf;
+        }
+      }
+    }
+  }
+
+  &__btn {
+    margin-left: auto;
+    padding: 15px 73px 15px 74px;
+    border-radius: 15px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
+    color: white;
+    background-color: #1814f3;
+  }
+}
+
+@media (max-width: 1280px) {
+  .main {
+    padding: 30px 20px;
+  }
+
+  .account {
+    &__img {
+      max-width: 110px;
+    }
+
+    .data {
+      &__list {
+        flex-direction: column;
+      }
+
+      &__item {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 815px) {
+  .main {
+    padding: 25px;
+  }
+
+  .setting {
+    padding: 20px 15px;
+
+    &__header {
+      padding-left: 4px;
+    }
+  }
+
+  .tabs {
+    &__item {
+      &:not(:last-child) {
+        margin-right: 28px;
+      }
+    }
+
+    &__btn {
+      padding: 0px 5px 5px 5px;
+      font-size: 13px;
+      white-space: nowrap;
+
+      &--active {
+        border-bottom: 2px solid #1814f3;
+      }
+    }
+  }
+
+  .account {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+    padding-right: 5px;
+    padding-left: 5px;
+
+    &__img {
+      margin-right: 5px;
+      margin-bottom: 23px;
+      padding: 0;
+      max-width: none;
+      height: 170px;
+      width: 170px;
+
+      &::before {
+        content: "";
+        bottom: 20px;
+        right: -5px;
+        height: 38px;
+        width: 38px;
+        background-image: url("@images/pencil.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &__btn {
+      width: 100%;
+    }
+
+    .data {
+      // padding-left: 5px;
+      width: 100%;
+
+      &__list {
+        margin-bottom: 20px;
+      }
+
+      &__item {
+        max-width: 100%;
+        font-size: 13px;
+
+        &:nth-child(2n + 1) {
+          margin-right: 0px;
+          margin-bottom: 17px;
+        }
+
+        &:not(:nth-last-child(-n + 2)) {
+          margin-bottom: 17px;
+        }
+
+        span {
+          margin-bottom: 9px;
+          line-height: 15px;
+        }
+
+        input {
+          padding-left: 14px;
+          height: 40px;
+          border-radius: 10px;
+          font-size: 12px;
+
+          &::placeholder {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    &__btn {
+      padding: 10px 0;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+  }
+}

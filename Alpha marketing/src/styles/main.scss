@@ -5,7 +5,4 @@
 @import "settings";
 @import "effects";
 
-@import "./components/header";
-@import "./components/burger";
-@import "./components/breadcrumbs";
-@import "./components/footer";
+@import "./components/*";

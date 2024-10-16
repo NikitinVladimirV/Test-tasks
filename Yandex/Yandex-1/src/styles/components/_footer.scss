@@ -1,0 +1,16 @@
+.footer {
+  padding: 40px 0 70px;
+  background-color: $color-footer--bg;
+
+  &__container {
+    font-size: 16px;
+    line-height: 120%;
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 635px) {
+  .footer {
+    padding: 40px 5px 60px;
+  }
+}
